@@ -23,7 +23,7 @@ public class Buffer {
     @Override
     public String toString() {
         return "Buffer{" +
-                "fila = " + fila +
-                '}';
+                "Hay " + fila.size() +
+                " en fila";
     }
 }

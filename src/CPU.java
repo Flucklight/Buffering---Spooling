@@ -42,7 +42,7 @@ public class CPU extends Thread{
             return "CPU{En espera de un proceso}";
         } else {
             return "CPU{" +
-                    "proceso = " + proceso.toString() +
+                    "proceso -> " + proceso.toString() +
                     ", procesando = " + procesando +
                     '}';
         }
