@@ -1,10 +1,10 @@
 
 public class Main {
 
-    private static final Simulacion simulacion = new Simulacion();
+    private static final Ventana ventana = new Ventana();
 
     public static void main(String[] args) {
-        simulacion.start();
+        ventana.setVisible(true);
     }
 
 }

@@ -16,6 +16,14 @@ public class Proceso {
         this.tiempoEjecucion--;
     }
 
+    public double getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(double prioridad) {
+        this.prioridad = prioridad;
+    }
+
     @Override
     public String toString() {
         return  "Prioridad = " + prioridad +
