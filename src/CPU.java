@@ -1,21 +1,22 @@
-public class CPU extends Thread{
+public class CPU implements Runnable {
 
     private Proceso proceso;
+    private Thread hilo;
+    private Buffer buffer;
     private boolean procesando;
 
-    public CPU() {
+    public CPU(Buffer b) {
         procesando = false;
+        buffer = b;
+        hilo = new Thread(this);
+        hilo.start();
     }
 
-    public void Procesar(Proceso proceso) {
+    public void procesar() {
+        this.proceso = buffer.mandarProcesar();
         if (proceso != null) {
-            this.proceso = proceso;
             procesando = true;
         }
-    }
-
-    public boolean isProcesando() {
-        return procesando;
     }
 
     @Override
@@ -24,21 +25,23 @@ public class CPU extends Thread{
             if (procesando) {
                 proceso.setTiempoEjecucion();
                 try {
-                    Thread.sleep(1000);
+                    hilo.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if (proceso.getTiempoEjecucion() == 0) {
+                if (proceso.getTiempoEjecucion() <= 0) {
                     proceso = null;
                     procesando = false;
                 }
+            } else {
+                procesar();
             }
         }
     }
 
     @Override
     public String toString() {
-        if (proceso == null) {
+        if (!procesando) {
             return "CPU{En espera de un proceso}";
         } else {
             return "CPU { " +
