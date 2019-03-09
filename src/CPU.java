@@ -9,6 +9,7 @@ public class CPU implements Runnable {
         procesando = false;
         buffer = b;
         hilo = new Thread(this);
+        hilo.setPriority(3);
         hilo.start();
     }
 
@@ -22,6 +23,7 @@ public class CPU implements Runnable {
     @Override
     public void run() {
         while (true) {
+            System.out.println(toString());
             if (procesando) {
                 proceso.setTiempoEjecucion();
                 try {
